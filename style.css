@@ -1,15 +1,62 @@
 body {
     background-color: white;
     color: black;
-    font-family: doto-font;
-  }
-  
-  .doto-font {
-  font-family: "Doto", serif;
-  font-optical-sizing: auto;
-  font-weight: 500;
-  font-style: normal;
-  font-variation-settings:
-    "ROND" 100;
 }
 
+h1 {
+    font-family: Zen Dots;
+    font-size: 50px;
+    color: #628c5a;    
+}
+
+h2 {
+    font-family: Doto;
+    font-size: 40px;
+    color: dimgray;
+}
+
+h3 {
+    font-family: Michroma;
+    font-size: 24px;
+    color: cadetblue;
+}
+
+p, ul {
+    font-family: Jura;
+    font-size: 20px;
+}
+
+a {
+    font-family: Jura;
+    font-weight: 600;
+    font-size: 20px;
+}
+  
+.doto-font {
+    font-family: "Doto", serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+    font-variation-settings:
+        "ROND" 100;
+}
+
+.jura-regular {
+    font-family: "Jura", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+  
+.zen-dots-regular {
+    font-family: "Zen Dots", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.michroma-regular {
+    font-family: "Michroma", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+  

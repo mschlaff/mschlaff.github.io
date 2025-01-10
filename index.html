@@ -5,18 +5,143 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>MAIN PAGE</title>
+    <title>MAIN</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Doto:wght,ROND@500,100&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anta&family=Doto:wght,ROND@500,100&family=Jura:wght@300&family=Michroma&family=Monomaniac+One&family=VT323&family=Zen+Dots&display=swap" rel="stylesheet">
+
+    <style>
+        .gallery-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 50px auto;
+        }
+
+        .main-image {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            left: 50%;
+            top: 125%;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            z-index: 2;
+            animation: continuousSpin 5s linear infinite;
+        }
+
+        @keyframes continuousSpin {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        .link-wrapper {
+            position: absolute;
+            left: 40%;
+            top: 125%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            text-decoration: none;
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+        .link-image {
+            width: 100px;
+            height: 100px;
+            cursor: pointer;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .link-text {
+            font-family: Jura;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .expanded .link-wrapper {
+            opacity: 1;
+        }
+
+        .expanded .link-text {
+            opacity: 1;
+        }
+
+        .expanded a:nth-child(2) {
+            transform: translate(-300px, -300px);
+        }
+
+        .expanded a:nth-child(3) {
+            transform: translate(300px, -300px);
+        }
+
+        .expanded a:nth-child(4) {
+            transform: translate(-250px, 200px);
+        }
+
+        .expanded a:nth-child(5) {
+            transform: translate(200px, 200px);
+        }
+
+        .expanded a:nth-child(6) {
+            transform: translate(400px, -50px);
+        }
+
+        .expanded a:nth-child(7) {
+            transform: translate(-400px, -50px);
+        }
+    </style>
 </head>
 
 <body>
-    <div class="conteiner">
-        <h1>HELLO WORLD!!!</h1>
-        <a href="./about">Click here!!!</a>
+    <div class="gallery-container" id="gallery">
+        <!-- center image -->
+        <img src="media/torodisc.png" alt="main image" class="main-image" id="mainImage">
+
+        <!-- link images that expand from center image -->
+        <a href="./about.html" class="link-wrapper">
+            <img src="media/cat.png" alt="link 1" class="link-image">
+            <div class="link-text">about</div>
+        </a>
+        <a href="./projects.html" class="link-wrapper">
+            <img src="media/pc.png" alt="link 2" class="link-image">
+            <div class="link-text">projects</div>
+        </a>
+        <a href="./photography.html" class="link-wrapper">
+            <img src="media/cam.png" alt="link 3" class="link-image">
+            <div class="link-text">photography</div>
+        </a>
+        <a href="./art.html" class="link-wrapper">
+            <img src="media/folder.png" alt="link 4" class="link-image">
+            <div class="link-text">art</div>
+        </a>
+        <a href="./socialmedia.html" class="link-wrapper">
+            <img src="media/star.png" alt="link 5" class="link-image">
+            <div class="link-text">social media</div>
+        </a>
+        <a href="#" class="link-wrapper">
+            <img src="media/ghost.png" alt="link 5" class="link-image">
+            <div class="link-text">other link</div>
+        </a>
     </div>
+
+    <script>
+        const gallery = document.getElementById('gallery');
+        const mainImage = document.getElementById('mainImage');
+
+        mainImage.addEventListener('click', () => {
+            gallery.classList.toggle('expanded');
+        });
+    </script>
 </body>
 
 </html>

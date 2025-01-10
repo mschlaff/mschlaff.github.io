@@ -67,7 +67,7 @@
             font-size: 14px;
             margin-top: 5px;
         }
-
+        
         .expanded .link-wrapper {
             opacity: 1;
         }
@@ -99,6 +99,38 @@
         .expanded a:nth-child(7) {
             transform: translate(-400px, -50px);
         }
+
+        .click-text {
+            position: absolute;
+            left: 50%;
+            top: 90%;
+            transform: translate(-50%, 300%);
+            font-family: Jura;
+            font-size: 18px;
+            color: #000;
+            z-index: 3;
+            opacity: 1;
+            transition: opacity 0.4s ease;
+        }
+
+        .expanded .click-text {
+            opacity: 0;
+        }
+
+        a {
+            color: black;
+            text-decoration: none;
+        }
+
+        a:clicked {
+            color: black;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: skyblue;
+            text-decoration: none;
+        }
     </style>
 </head>
 
@@ -106,7 +138,7 @@
     <div class="gallery-container" id="gallery">
         <!-- center image -->
         <img src="media/torodisc.png" alt="main image" class="main-image" id="mainImage">
-
+        
         <!-- link images that expand from center image -->
         <a href="./about.html" class="link-wrapper">
             <img src="media/cat.png" alt="link 1" class="link-image">
@@ -132,6 +164,9 @@
             <img src="media/ghost.png" alt="link 5" class="link-image">
             <div class="link-text">other link</div>
         </a>
+
+        <!-- click here text -->
+        <div class="click-text"><center><p>^</p><p>click here</p></center></div>
     </div>
 
     <script>

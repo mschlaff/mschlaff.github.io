@@ -14,6 +14,7 @@
 <style>
     .container {
         display: flex;
+        align-items: center;
     }
 
     .container .profile-pic {
@@ -21,11 +22,13 @@
     }
 
     .container .about {
-        padding: 50px 50px 50px 50px;
+        padding: 0px 0px 0px 50px;
     }
 
-    .container .links {
-        padding: 50px 50px 50px 50px;
+    .container .link {
+        position: absolute;
+        top: 50px;
+        right: 50px;
     }
 
     .button {
@@ -48,6 +51,15 @@
         text-decoration: none;
     }
 
+    .button a:hover {
+        color: white;
+        text-decoration: none;
+    }
+
+    h2 {
+        line-height: 20px;
+    }
+
     .video-gallery {
         display: flex;
         flex-direction: row;
@@ -64,6 +76,23 @@
         margin: 20px 20px;
         flex: 20%;
     }
+
+    a {
+        text-decoration: none;
+        color: black;
+        transition: color 0.5s ease;
+    }
+
+    a:clicked {
+        text-decoration: none;
+        color: black;
+    }
+
+    a:hover {
+        color: skyblue;
+        text-decoration: none;
+    }
+
 </style>
 </head>
 
@@ -74,10 +103,10 @@
         </div>
         <div class="about">
             <h2>TECHYSOCKS</h2>
-            <button class="button"><a href="https://www.tiktok.com/@techysocks">Follow</a></button>
+            <p>1.2 million views - 117.5 thousand likes</p><button class="button"><a href="https://www.tiktok.com/@techysocks">Follow</a></button>
         </div>
-        <div class="links">
-            <a href="./index.html">go home</a>
+        <div class="link">
+            <a href="./index.html">go back</a>
         </div>
     </div>
 

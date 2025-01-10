@@ -13,7 +13,7 @@
 
     <style>
         body {
-            background: black;
+            background: white;
         }
         
         * {
@@ -32,7 +32,7 @@
         }
 
         .container .header h2{
-            padding-bottom: 30px;
+            padding-bottom: 75px;
         }
 
         .container .header p{
@@ -40,17 +40,17 @@
         }
 
         .container .header a {
-            color: cadetblue;
+            color: black;
             text-decoration: none;
         }
 
         .container .header a:visited {
-            color: cadetblue;
+            color: black;
             text-decoration: none;
         }
 
         .container .header a:hover {
-            color: white;
+            color: cadetblue;
             text-decoration: none;
         }
 
@@ -70,6 +70,35 @@
             padding-bottom: 50px;
             width: 100%
         }
+
+        .back-link {
+            position: absolute;
+            top: 50px;
+            right: 100px;
+        }
+
+        #darkModeToggle {
+            position: absolute;
+            top: 50px;
+            right: 250px;
+            color: black;
+            transition: color 0.5s ease;
+        }
+
+        #darkModeToggle:hover {
+            color: cadetblue;
+        }
+
+        .dark-mode {
+            background-color: black !important;
+            color: white;
+        }
+
+        span {
+            font-family: Jura;
+            font-size: 20px;
+            font-weight: bold;
+        }
     </style>
 </head>
 
@@ -77,7 +106,8 @@
     <div class="container">
         <div class="header">
             <h2>PHOTOGRAPHY</h2>
-            <p><a href="./index.html">go back</a></p>
+            <span id="darkModeToggle" style="cursor: pointer;">dark mode</span>
+            <a href="./index.html" class="back-link">go back</a>
         </div>
         <div class="photobox">
             <div class="photos">
@@ -155,6 +185,25 @@
             </div>
         </div>
     </div>
+
+    <script>
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+        const backLink = document.querySelector('.back-link');
+
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                darkModeToggle.textContent = 'light mode';
+                darkModeToggle.style.color = 'white';
+                backLink.style.color = 'white';
+            } else {
+                darkModeToggle.textContent = 'dark mode';
+                darkModeToggle.style.color = 'black';
+                backLink.style.color = 'black';
+            }
+        });
+    </script>
 </body>
 
 </html>

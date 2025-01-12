@@ -1,0 +1,309 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>PROJECTS</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anta&family=Doto:wght,ROND@500,100&family=Jura:wght@300&family=Michroma&family=Monomaniac+One&family=VT323&family=Zen+Dots&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            position: absolute;
+            top: 50px;
+            right: 50px;
+        }
+
+        h2 {
+            padding-top: 50px;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+            transition: color 0.5s ease;
+            cursor: pointer;
+        }
+
+        a:clicked {
+            text-decoration: none;
+            color: black;
+        }
+
+        a:hover {
+            color: skyblue;
+            text-decoration: none;
+        }
+
+        .project-nav {
+            display: flex;
+            gap: 40px;
+            margin: 40px 0;
+        }
+
+        .project-link {
+            font-size: 1.1em;
+        }
+
+        .project-link.active {
+            color: skyblue;
+        }
+
+        .project-content {
+            position: relative;
+            width: 100%;
+        }
+
+        .project {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.8s ease;
+            padding: 20px;
+            display: flex;
+            gap: 10%;
+        }
+
+        .project.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .project-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            margin: 0px 0px 50px 50px;
+        }
+
+        .project-image {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .project h3 {
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+
+        .project p {
+            margin-bottom: 25px;
+            font-size: 1.1em;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .project-links a {
+            padding: 8px 15px;
+            border: 1px solid #000;
+            transition: all 0.3s ease;
+        }
+
+        .project-links a:hover {
+            background: #000;
+            color: #fff;
+        }
+
+        .initial-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.5s ease;
+            width: 100%;
+        }
+
+        .initial-message.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>MY PROJECTS</h2>
+        <a href="./index.html" class="back-link">go back</a>
+
+        <nav class="project-nav">
+            <a class="project-link" onclick="showProject('project1')">Paddle Home Before Dark</a>
+            <a class="project-link" onclick="showProject('project2')">B1F Junk Shop</a>
+            <a class="project-link" onclick="showProject('project3')">Japan Junk Journal</a>
+            <a class="project-link" onclick="showProject('project4')">Pwnagotchi</a>
+        </nav>
+
+        <div class="project-content">
+            <div class="initial-message">
+                <p>^</p>
+                <br>
+                <p>Select a project above</p>
+            </div>
+            
+            <div id="project1" class="project">
+                <div class="project-info">
+                    <h3>Paddle Home Before Dark</h3>
+                    <p>Paddle Home Before Dark is an immersive third-person kayaking 
+                        adventure game that challenges players to navigate a winding river 
+                        and make it home before nightfall. Designed to provide an authentic 
+                        kayaking experience, players use intuitive, realistic controls to 
+                        paddle and steer through a dynamic and ever-changing environment. 
+                        As the sun begins to set, the river becomes a test of skill and 
+                        strategy. Players must avoid natural obstacles like jagged rocks 
+                        and narrow riverbanks, which can bump the kayak and slow their 
+                        progress. The stakes rise as hungry sharks patrol certain sections 
+                        of the water. Get too close, and you'll face dire consequences. 
+                        Every playthrough offers a fresh experience, as the river's paths 
+                        change, presenting new challenges and encouraging players to 
+                        experiment with different strategies to discover the fastest and 
+                        safest way home.</p>
+                    <p>This game was created in Unity as part of a project 
+                        for my Game Design course in summer 2024, where I worked with four 
+                        teammates to bring this thrilling adventure game to life.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/mschlaff/GameDesign" target="_blank">Game Executable</a>
+                        <a href="https://youtu.be/KXXEhFfRgL0?si=wthD6pWCrKyS1_G1" target="_blank">Game Trailer</a>
+                        <a href="https://youtu.be/UM6JLobRFmw?si=oQJBqS0GzP_3EU8i" target="_blank">Gameplay Demonstration</a>
+                    </div>
+                </div>
+                <div class="project-image">
+                    <img src="media/paddlehome.png">
+                </div>
+            </div>
+
+            <div id="project2" class="project">
+                <div class="project-info">
+                    <h3>B1F Junk Shop</h3>
+                    <p>B1F Junk Shop is a personal project of mine inspired by the 
+                        aesthetics of the old net (1990~2010). I feel like social media 
+                        websites these days offer little to no customization, leaving 
+                        every person's page feeling like the same bland website. The 
+                        internet has been a large part of my life for as long as I can 
+                        remember. My early memories are filled with sitting in the basement 
+                        on my family's big CRT monitor computer loaded with Windows XP, 
+                        playing CD-ROM and flash games until the early hours of the night 
+                        then sneaking upstairs into my room. I wanted to recreate the 
+                        feeling of those days with this website and have a place that I can 
+                        experiment with styles and store my work and thoughts about life.
+                        I hand-coded this website in HTML over the course of 2023 and 2024.</p>
+                    <p>NAMESAKE</p>
+                    <p>When living in Japan, I was very intrigued by the different 
+                        junk shops scattered about Akihabara and I absolutely love 
+                        the things you can find in there. I love old technology, and 
+                        there is an endless supply of new and interesting things you 
+                        can find in these stores. One store that stuck out to me - and 
+                        is the namesake of this website - is the Hard Off on the back 
+                        street of Akiba, which features a room in the basement filled with 
+                        junk in blue boxes, stereo and VCR machines lining the back walls, 
+                        and guitars on the rightmost wall. Lining the walls are posters of 
+                        the junk shop mascot with "JUNK CORNER", "BUY AND SELL", and 
+                        "TREASURE HUNT!" written in Japanese in bubbly blue and yellow 
+                        characters. Things in the blue bins ranged anywhere from old 
+                        keyboards, wires and connectors, Wii remotes, portable DVD and 
+                        CD players, camera hardware, monitors, stereos, kitchen utensils, 
+                        entire computers, and even more. It's a real treasure hunt in there 
+                        if you can dig through enough.</p>
+                    <div class="project-links">
+                        <a href="https://texxx.neocities.org/" target="_blank">View Live</a>
+                    </div>
+                </div>
+                <div class="project-image">
+                    <img src="media/b1f.PNG" style="height: 935px;">
+                </div>
+            </div>
+
+            <div id="project3" class="project">
+                <div class="project-info">
+                    <h3>Japan Junk Journal</h3>
+                    <p>This is a "project" I started doing while I was traveling in Japan 
+                        from December 2022 to March 2023. I was inspired by junk journaling 
+                        and I wanted to keep as many memories as possible from my first trip 
+                        to Japan. I thought this was a fun project and I would like to share 
+                        my keepsakes with the world. This is not a comprehensive collection 
+                        of every page from my travel diary, since there were some days where 
+                        I did not collect anything flat I could paste into my journal.</p>
+                    <p>The original journal is now immortalized in the page I created on my
+                        Neocities website and you can view it at the link below.</p>
+                    <div class="project-links">
+                        <a href="https://texxx.neocities.org/japanpics" target="_blank">View Live</a>
+                    </div>
+                </div>
+                <div class="project-image">
+                    <img src="media/jpdiary.png" style="height: 1000px;">
+                </div>
+            </div>
+
+            <div id="project4" class="project">
+                <div class="project-info">
+                    <h3>Pwnagotchi</h3>
+                    <p>A Pwnagotchi is like a Tamagotchi, but they eat wifi! To be more 
+                        technical, they are a reinforcement-learning based AI program that 
+                        "feeds" and learns from the wifi to crack WPA keys and handshakes. 
+                        They can also deauthenticate devices from wifi networks and associate 
+                        with those devices to get wifi networks handshakes. Over time, they 
+                        get better on their own at hacking wifi networks! It is an open 
+                        source project with a large community of people contributing and 
+                        hacking together on Reddit and Discord.</p>
+                    <p>My Pwnagotchi is built from a Raspberry Pi Zero 2 W, 16GB MicroSD Card, 
+                        Waveshare V4 E-Ink Display HAT, PiSugar 1200 mAh Lithium Battery, and 
+                        a custom 3D-printed case that glows in the dark.</p>
+                    <div class="project-links">
+                        <a href="https://pwnagotchi.org/" target="_blank">Wiki</a>
+                        <a href="https://www.reddit.com/r/pwnagotchi/" target="_blank">Reddit</a>
+                    </div>
+                </div>
+                <div class="project-image">
+                    <img src="https://texxx.neocities.org/media/IMG_9165.JPG" style="height: 600px;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showProject(projectId) {
+            // Hide initial message
+            document.querySelector('.initial-message').classList.add('hidden');
+            
+            // Remove active class from all projects and links
+            document.querySelectorAll('.project').forEach(project => {
+                project.classList.remove('active');
+            });
+            document.querySelectorAll('.project-link').forEach(link => {
+                link.classList.remove('active');
+            });
+
+            // Add active class to selected project and link
+            document.getElementById(projectId).classList.add('active');
+            document.querySelector(`[onclick="showProject('${projectId}')"]`).classList.add('active');
+        }
+    </script>
+</body>
+</html>

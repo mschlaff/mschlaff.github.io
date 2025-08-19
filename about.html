@@ -59,13 +59,24 @@
             color: skyblue;
             text-decoration: none;
         }
+        
+        .fade-in {
+          opacity: 0;
+          animation: fadeInAnimation 1s ease-in forwards;
+        }
+        
+        @keyframes fadeInAnimation {
+            to {
+                opacity: 1;
+            }
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
         <div class="picture">
-            <img src="media/charicature.png">
+            <img src="media/charicature.png" class="fade-in">
         </div>
         
         <div class="text">

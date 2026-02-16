@@ -1,21 +1,34 @@
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>ABOUT</title>
-
+    <title>MY ART</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anta&family=Doto:wght,ROND@500,100&family=Jura:wght@300&family=Michroma&family=Monomaniac+One&family=VT323&family=Zen+Dots&display=swap" rel="stylesheet">
-
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Jura', sans-serif;
+            min-height: 100vh;
+        }
+
         .container {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             margin: 0 auto;
+        }
+
+        h2 {
+            padding-top: 50px;
         }
 
         .back-link {
@@ -27,27 +40,431 @@
         a {
             text-decoration: none;
             color: black;
-            transition: color 0.5s ease;
-        }
-
-        a:clicked {
-            text-decoration: none;
-            color: black;
+            transition: color 0.3s ease;
+            cursor: pointer;
         }
 
         a:hover {
             color: skyblue;
-            text-decoration: none;
+        }
+
+        /* Icon Dock */
+        .icon-dock {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 100px;
+            padding: 20px 40px;
+        }
+
+        .icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .icon:hover .icon-image {
+            transform: rotate(10deg);
+        }
+
+        .icon-image {
+            width: 70px;
+            height: 70px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.2s ease;
+        }
+
+        .icon-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .icon-label {
+            margin-top: 8px;
+            font-family: 'Jura', sans-serif;
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        /* Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .overlay.active {
+            pointer-events: all;
+        }
+
+        /* Content Box - ASCII style window */
+        .content-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 80%;
+            max-height: 75vh;
+            background: #ffffff;
+            border: 1px solid #000000;
+            z-index: 101;
+            overflow: hidden;
+            
+            /* Initial state for animation */
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.3);
+            transform-origin: center center;
+            pointer-events: none;
+            transition: none;
+        }
+
+        .content-box.opening {
+            animation: macOpen 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .content-box.closing {
+            animation: macClose 0.25s cubic-bezier(0.4, 0, 0.6, 1) forwards;
+        }
+
+        .content-box.open {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+            pointer-events: all;
+        }
+
+        @keyframes macOpen {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.3);
+            }
+            100% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        @keyframes macClose {
+            0% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.3);
+            }
+        }
+
+        /* Window title bar */
+        .window-bar {
+            height: 36px;
+            background: #ffffff;
+            border-bottom: 1px solid #000000;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            position: relative;
+        }
+
+        .window-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .window-btn {
+            width: auto;
+            height: auto;
+            border-radius: 0;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: #000000;
+            font-family: 'VT323', monospace;
+            font-size: 1.2rem;
+            transition: color 0.15s ease;
+        }
+
+        .window-btn:hover {
+            color: skyblue;
+        }
+
+        .btn-close::before {
+            content: '[X]';
+        }
+
+        .btn-minimize::before {
+            content: '[-]';
+        }
+
+        .btn-maximize::before {
+            content: '[□]';
+        }
+
+        .window-title {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Jura', sans-serif;
+            font-size: 1rem;
+            color: #000000;
+            text-transform: lowercase;
+            letter-spacing: 1px;
+        }
+
+        /* Content area */
+        .window-content {
+            padding: 30px;
+            max-height: calc(75vh - 36px);
+            overflow-y: auto;
+            background: #ffffff;
+        }
+
+        .window-content h3 {
+            font-family: 'Jura', sans-serif;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #000000;
+            font-weight: 300;
+        }
+
+        .window-content p {
+            font-family: 'Jura', sans-serif;
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #000000;
+            margin-bottom: 20px;
+        }
+
+        /* Photo grid */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .photo-item {
+            aspect-ratio: 1;
+            background: #ffffff;
+            border: 1px solid #000000;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000000;
+            font-family: 'Jura', sans-serif;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .photo-item::before {
+            content: '[ + ]';
+        }
+
+        .photo-item:hover {
+            background: #000;
+            color: #fff;
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Scrollbar styling */
+        .window-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .window-content::-webkit-scrollbar-track {
+            background: #ffffff;
+        }
+
+        .window-content::-webkit-scrollbar-thumb {
+            background: #000000;
+        }
+
+        .window-content::-webkit-scrollbar-thumb:hover {
+            background: #333333;
         }
     </style>
 </head>
-
 <body>
     <div class="container">
         <h2>MY ART</h2>
         <a href="./index.html" class="back-link">go back</a>
     </div>
-    <div class="text">
-        <p>This page is currently under construction! Please check back later :)</p>
+
+    <!-- Icon Dock -->
+    <div class="icon-dock">
+        <div class="icon" data-category="art" onclick="openBox('art')">
+            <div class="icon-image">
+                <img src="media/sketchbook.jpg" alt="Art">
+            </div>
+            <span class="icon-label">art</span>
+        </div>
+
+        <div class="icon" data-category="sewing" onclick="openBox('sewing')">
+            <div class="icon-image">
+                <img src="media/thread.jpg" alt="Sewing">
+            </div>
+            <span class="icon-label">sewing</span>
+        </div>
+
+        <div class="icon" data-category="other" onclick="openBox('other')">
+            <div class="icon-image">
+                <img src="media/pencils.jpg" alt="Other">
+            </div>
+            <span class="icon-label">other</span>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" onclick="closeBox()"></div>
+
+    <!-- Content Boxes -->
+    <div class="content-box" id="art-box">
+        <div class="window-bar">
+            <div class="window-buttons">
+                <div class="window-btn btn-close" onclick="closeBox()"></div>
+                <div class="window-btn btn-minimize"></div>
+                <div class="window-btn btn-maximize"></div>
+            </div>
+            <span class="window-title">Art</span>
+        </div>
+        <div class="window-content">
+            <h3>Traditional & Digital Art</h3>
+            <p>A collection of my artwork spanning various mediums including digital illustration, watercolor, oil painting, and mixed media. Each piece represents a moment of creative exploration and growth.</p>
+            <div class="photo-grid">
+                <div class="photo-item"></div>
+                <div class="photo-item"></div>
+                <div class="photo-item"></div>
+                <div class="photo-item"></div>
+                <div class="photo-item"></div>
+                <div class="photo-item"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-box" id="sewing-box">
+        <div class="window-bar">
+            <div class="window-buttons">
+                <div class="window-btn btn-close" onclick="closeBox()"></div>
+                <div class="window-btn btn-minimize"></div>
+                <div class="window-btn btn-maximize"></div>
+            </div>
+            <span class="window-title">Sewing</span>
+        </div>
+        <div class="window-content">
+            <h3>Textile & Sewing Projects</h3>
+            <p>Handcrafted garments, accessories, and textile art. From custom clothing to embroidery work, these projects showcase my passion for fabric arts and attention to detail.</p>
+            <div class="photo-grid">
+                <div class="photo-item"></div>
+                <div class="photo-item"></div>
+                <div class="photo-item"></div>
+                <div class="photo-item"></div>
+                <div class="photo-item"></div>
+                <div class="photo-item"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-box" id="other-box">
+        <div class="window-bar">
+            <div class="window-buttons">
+                <div class="window-btn btn-close" onclick="closeBox()"></div>
+                <div class="window-btn btn-minimize"></div>
+                <div class="window-btn btn-maximize"></div>
+            </div>
+            <span class="window-title">Other</span>
+        </div>
+        <div class="window-content">
+            <h3>Other Creative Works</h3>
+            <p>A miscellaneous collection of creative projects including photography, crafts, installations, and experimental work that doesn't fit neatly into other categories.</p>
+            <div class="photo-grid">
+                <div class="photo-item"></div>
+                <div class="photo-item"></div>
+                <div class="photo-item"></div>
+                <div class="photo-item"></div>
+                <div class="photo-item"></div>
+                <div class="photo-item"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentBox = null;
+
+        function openBox(category) {
+            // Close any open box first
+            if (currentBox) {
+                closeBox();
+                setTimeout(() => {
+                    showBox(category);
+                }, 300);
+            } else {
+                showBox(category);
+            }
+        }
+
+        function showBox(category) {
+            const box = document.getElementById(category + '-box');
+            const overlay = document.querySelector('.overlay');
+            
+            // Reset animation classes
+            box.classList.remove('closing', 'open');
+            
+            // Trigger reflow
+            void box.offsetWidth;
+            
+            // Start opening animation
+            box.classList.add('opening');
+            overlay.classList.add('active');
+            currentBox = box;
+
+            // After animation completes, set final state
+            setTimeout(() => {
+                box.classList.remove('opening');
+                box.classList.add('open');
+            }, 350);
+        }
+
+        function closeBox() {
+            if (!currentBox) return;
+            
+            const overlay = document.querySelector('.overlay');
+            
+            currentBox.classList.remove('open');
+            currentBox.classList.add('closing');
+            overlay.classList.remove('active');
+            
+            const boxToClose = currentBox;
+            currentBox = null;
+
+            setTimeout(() => {
+                boxToClose.classList.remove('closing');
+            }, 250);
+        }
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeBox();
+            }
+        });
+    </script>
 </body>
 </html>

@@ -93,7 +93,7 @@
         .icon-label {
             margin-top: 8px;
             font-family: 'Jura', sans-serif;
-            font-size: 20px;
+            font-size: 14px;
             color: black;
         }
 
@@ -133,11 +133,11 @@
         }
 
         .content-box.opening {
-            animation: macOpen 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation: open 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         .content-box.closing {
-            animation: macClose 0.25s cubic-bezier(0.4, 0, 0.6, 1) forwards;
+            animation: close 0.25s cubic-bezier(0.4, 0, 0.6, 1) forwards;
         }
 
         .content-box.open {
@@ -146,7 +146,7 @@
             pointer-events: all;
         }
 
-        @keyframes macOpen {
+        @keyframes open {
             0% {
                 opacity: 0;
                 transform: translate(-50%, -50%) scale(0.3);
@@ -157,7 +157,7 @@
             }
         }
 
-        @keyframes macClose {
+        @keyframes close {
             0% {
                 opacity: 1;
                 transform: translate(-50%, -50%) scale(1);

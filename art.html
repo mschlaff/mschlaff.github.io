@@ -396,13 +396,6 @@
 
     <!-- Icon Dock -->
     <div class="icon-dock">
-        <div class="icon" data-category="art" onclick="openBox('art')">
-            <div class="icon-image">
-                <img src="media/sketchbook.jpg" alt="Art">
-            </div>
-            <span class="icon-label">art</span>
-        </div>
-
         <div class="icon" data-category="sewing" onclick="openBox('sewing')">
             <div class="icon-image">
                 <img src="media/thread.jpg" alt="Sewing">
@@ -410,11 +403,18 @@
             <span class="icon-label">sewing & cosplay</span>
         </div>
 
+        <div class="icon" data-category="art" onclick="openBox('art')">
+            <div class="icon-image">
+                <img src="media/sketchbook.jpg" alt="Art">
+            </div>
+            <span class="icon-label">art</span>
+        </div>
+
         <div class="icon" data-category="other" onclick="openBox('other')">
             <div class="icon-image">
                 <img src="media/pencils.jpg" alt="Other">
             </div>
-            <span class="icon-label">other</span>
+            <span class="icon-label">graphics & design</span>
         </div>
     </div>
 
@@ -535,10 +535,10 @@
                 <div class="window-btn btn-back" onclick="goBack('other')"></div>
                 <div class="window-btn btn-close" onclick="closeBox()"></div>
             </div>
-            <span class="window-title">other</span>
+            <span class="window-title">graphics & design</span>
         </div>
         <div class="path-bar">
-            <span class="path-segment" onclick="goBack('other')">cosplay</span>
+            <span class="path-segment" onclick="goBack('other')">graphics & design</span>
             <span class="path-separator"></span>
         </div>
         <div class="window-content">
